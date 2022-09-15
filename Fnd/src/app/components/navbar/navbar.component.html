@@ -10,7 +10,52 @@
 </a>
   <span>Mobile Store</span>
   <span class="example-spacer"></span>
-   <a
+
+   <button
+    *ngIf="isLoggedIn && auth =='Admin'"
+    class="example-icon favorite-icon ml20"
+    mat-button
+    routerLink="/admin/"
+    aria-label="Example icon-button with heart icon"
+  >
+    Home
+    
+  </button>
+  <button
+    *ngIf="isLoggedIn && auth =='Normal'"
+    class="example-icon favorite-icon ml20"
+    mat-button
+    routerLink="/user-dashboard/0"
+    aria-label="Example icon-button with heart icon"
+  >
+    Home
+    
+  </button>
+   
+
+ 
+
+  <button
+    *ngIf="isLoggedIn && auth =='Admin'"
+    class="example-icon favorite-icon ml20"
+    mat-button
+    routerLink="/admin/profile"
+    aria-label="Example icon-button with heart icon"
+  >
+    {{ user.username }}
+    
+  </button>
+  <button
+    *ngIf="isLoggedIn && auth =='Normal'"
+    class="example-icon favorite-icon ml20"
+    mat-button
+    routerLink="/user-dashboard/0"
+    aria-label="Example icon-button with heart icon"
+  >
+    {{ user.username }}
+    
+  </button>
+  <a
     *ngIf="!isLoggedIn"
     [routerLink]="'/login'"
     mat-icon-button
@@ -29,8 +74,7 @@
   >
     Register
   </a>
-
-  <a
+   <a
     (click)="logout()"
     *ngIf="isLoggedIn"
     mat-icon-button
@@ -39,14 +83,6 @@
   >
     Logout
   </a>
-
-  <button
-    *ngIf="isLoggedIn && user"
-    class="example-icon favorite-icon ml20"
-    mat-button
-    routerLink="/admin/profile"
-    aria-label="Example icon-button with heart icon"
-  >
-    {{ user.username }}
-  </button>
 </mat-toolbar>
+
+

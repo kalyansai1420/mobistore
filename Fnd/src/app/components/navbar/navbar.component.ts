@@ -8,8 +8,10 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
+
   //user = null;
   @Input() user;
+  @Input() auth;
 
   constructor(public login: LoginService) {}
 
@@ -20,8 +22,10 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = this.login.isLoggedIn();
       this.user = this.login.getUser();
     });
-    console.log(this.login.getUser().username);
-    //console.log(this.user.username);
+    this.auth = this.login.getUser().authorities[0].authority;
+
+    //console.log(this.login.getUser().authorities[0].authority);
+    //console.log(this.auth);
   }
   public logout() {
     this.login.logout();

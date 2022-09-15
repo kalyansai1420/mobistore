@@ -35,16 +35,25 @@ public class User implements UserDetails{
 	private boolean enabled=true;
 	
 	//User many roles
-	@OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "category")
-	 private Set<Category> category = new HashSet<>();
+	// @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "category")
+	//  private Set<Category> category = new HashSet<>();
 	 
-	 public Set<Category> getCategory() {
+	//  public Set<Category> getCategory() {
+	// 		return category;
+	// 	}
+
+
+	// 	public void setCategory(Set<Category> category) {
+	// 		this.category = category;
+	// 	}
+		
+		// user to category
+		@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+		@JsonIgnore
+		private Set<Category> category = new HashSet<>();
+
+		public Set<Category> getCategory() {
 			return category;
-		}
-
-
-		public void setCategory(Set<Category> category) {
-			this.category = category;
 		}
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")

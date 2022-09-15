@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>e-commerce</artifactId>
+	<artifactId>mobistore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>e-commerce</name>
-	<description>E-Commerce App</description>
+	<name>mobistore</name>
+	<description>Mobistore App</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -51,6 +51,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
 	</dependencies>
 
 	<build>
