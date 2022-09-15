@@ -1,0 +1,61 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+         <mat-card>
+        <div class="container text-center">
+          <img class="logo-size" src="../../../assets/logo.png" alt="" />
+        </div>
+        <h1 class="text-center">register</h1>
+
+        <form (ngSubmit)="formSubmit()">
+            <!-- UserName field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>UserName</mat-label>
+                <input 
+                required
+                [(ngModel)] = "user.username"
+                name="username" 
+                matInput placeholder="Enter Here" />
+            </mat-form-field>
+
+            <!-- Password field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input 
+                required
+                [(ngModel)] = "user.password"
+                name="password" 
+                type="password" matInput placeholder="Enter Here" />
+            </mat-form-field>
+
+            <!-- Phone field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Phone Number</mat-label>
+                <input 
+                required
+                [(ngModel)] = "user.phone"
+                name="phone" 
+                type="tel" matInput placeholder="Enter Here" />
+            </mat-form-field>
+
+            <!-- Email field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email Id</mat-label>
+                <input 
+                required
+                [(ngModel)] = "user.email"
+                name="email" 
+                type="email" matInput placeholder="Enter Here" />
+            </mat-form-field>
+
+            <div class="container text-center">
+                <button type="submit" mat-raised-button color="primary">Register</button>
+                <button style="margin-left:20px" mat-raised-button color="accent">Clear</button>
+            </div>
+        </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

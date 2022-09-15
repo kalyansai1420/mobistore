@@ -1,0 +1,35 @@
+.page-container {
+  width: 100%;
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+}
+
+.chains {
+  min-width: 300px;
+}
+
+.chains .product {
+  display: inline-flex;
+  flex-direction: column;
+}
+.product {
+  width: 290px;
+  margin: 10px;
+  max-width: 300px;
+  min-height: 450px;  
+}
+.img {
+  height: 200px;
+  object-fit: contain;
+}
+
+.page-container .no-data {
+  min-width: 500px;
+  height: fit-content;
+}
+.btn-group {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}

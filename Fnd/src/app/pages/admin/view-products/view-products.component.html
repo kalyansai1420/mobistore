@@ -1,0 +1,44 @@
+<!-- {{ products | json }} -->
+<mat-card>
+  <div class="page-container">
+    <div class="chains">
+      <h1>All Mobiles</h1>
+      <mat-card class="mt10 product" *ngFor="let p of products">
+
+        <img class="img" mat-card-image src="{{ p.pPhoto }}" alt="" />
+
+        <mat-card-title>
+          <h3>
+            {{ p.pName }}
+          </h3>
+        </mat-card-title>
+
+        <mat-card-content>
+          <p>
+            {{ p.pDescription }}
+          </p>
+
+          <h3>
+            Price
+            {{ p.pPrice }}
+          </h3>
+        </mat-card-content>
+
+        <mat-card-actions class="btn-group">
+          <button 
+            [routerLink]="'/admin/product/'+p.pid"
+            mat-raised-button 
+            color="primary"
+            >
+            Update
+          </button>
+          
+          <button mat-raised-button color="warn" (click)="deleteProduct(p.pid)">
+            Delete
+          </button>
+        </mat-card-actions>
+        
+      </mat-card>
+    </div>
+  </div>
+</mat-card>

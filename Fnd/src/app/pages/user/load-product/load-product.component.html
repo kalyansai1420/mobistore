@@ -1,0 +1,46 @@
+<mat-card>
+  <div class="page-container">
+    <div>
+      <h1>Available Mobiles</h1>
+    </div>
+    <div class="chains" *ngIf="products">
+      <mat-card class="mt10 product" *ngFor="let p of products">
+        <img class="img" mat-card-image src="{{ p.pPhoto }}" alt="" />
+
+        <mat-card-title>
+          <h3>
+            {{ p.pName }}
+          </h3>
+        </mat-card-title>
+
+        <mat-card-content>
+          <p>
+            {{ p.pDescription }}
+          </p>
+
+          <!-- <h3>
+            Price
+            {{ p.pPrice }}
+          </h3> -->
+        </mat-card-content>
+
+        <mat-card-actions class="btn-group">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="addToCart(p)"
+          >
+            Add to Cart
+          </button>
+          <button mat-raised-button color="warn">
+            {{ p.pPrice }}
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <div class="no-data" *ngIf="products.length == 0">
+        <h1>No data in this category</h1>
+      </div>
+    </div>
+  </div>
+</mat-card>

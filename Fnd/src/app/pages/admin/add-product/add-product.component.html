@@ -1,0 +1,87 @@
+<!-- {{productData | json}} -->
+<mat-card>
+  <h1>Add New Product</h1>
+  <mat-card-content>
+    <div class="bootstrap-wrapper">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form (ngSubmit)="addProduct()">
+            <!-- Name -->
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Name</mat-label>
+              <input
+              [(ngModel)]="productData.pName"
+                required
+                autofocus
+                type="text"
+                name="pName"
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+            <!-- Description -->
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Description</mat-label>
+
+              <textarea
+                [(ngModel)]="productData.pDescription"
+                required
+                name="pDescription"
+                matInput
+                placeholder="Enter Category Description"
+                rows="15"
+              ></textarea>
+            </mat-form-field>
+
+            <!-- Image -->
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Photo</mat-label>
+
+              <input
+                [(ngModel)]="productData.pPhoto"
+                required
+                name="pPhoto"
+                matInput
+                placeholder="Enter Photo"
+              />
+            </mat-form-field>
+
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Price -->
+                <mat-form-field class="w100" appearance="outline">
+                  <mat-label>Price</mat-label>
+
+                  <input
+                    [(ngModel)]="productData.pPrice"
+                    required
+                    name="pPrice"
+                    matInput
+                    placeholder="Enter Price"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <!-- Category -->
+                <mat-form-field appearance="outline" class="w100">
+                  <mat-label>Category</mat-label>
+                  <mat-select 
+                    [(ngModel)]="productData.category.cid"
+                    name="category">
+                    <mat-option *ngFor="let c of categories" [value]="c.cid">
+                      {{ c.cTitle }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="container text-center mt15">
+              <button mat-raised-button color="accent">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
