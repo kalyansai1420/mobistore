@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Set;
 
+import com.example.demo.model.ecommerce.Category;
 import com.example.demo.model.ecommerce.Product;
 
 public interface ProductService {
@@ -16,6 +18,7 @@ public interface ProductService {
 	
 	public void deleteProduct(Long productId);
 	
+	public List<Product> getProductOfCategory(Category category);
 	
 
 }

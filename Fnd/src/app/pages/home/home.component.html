@@ -1,12 +1,32 @@
 <div class="bootstrap-wrapper">
   <div id="header-hero">
     <div class="header-bg">
-      <a [routerLink]="'/login'">
+
+      <a
+      *ngIf="!isLoggedIn" 
+      [routerLink]="'/login'">
         <img
           src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Shreyansh/jupiter/SneakPeek/D55971321_INWLD_Jupiter_SneakPeek_1242x450.gif"
           alt="header-image"
         />
       </a>
+      <a
+      *ngIf="isLoggedIn && auth =='Admin'" 
+      [routerLink]="'/admin'">
+        <img
+          src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Shreyansh/jupiter/SneakPeek/D55971321_INWLD_Jupiter_SneakPeek_1242x450.gif"
+          alt="header-image"
+        />
+      </a>
+      <a
+      *ngIf="isLoggedIn && auth =='Normal'" 
+      [routerLink]="'/user-dashboard/0'">
+        <img
+          src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/Shreyansh/jupiter/SneakPeek/D55971321_INWLD_Jupiter_SneakPeek_1242x450.gif"
+          alt="header-image"
+        />
+      </a>
+
     </div>
   </div>
 </div>

@@ -26,7 +26,7 @@ public class Category {
 	private String cTitle;
 	private String cDescription;
 	
-	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private Set<Product> products = new HashSet<>();
 

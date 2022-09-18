@@ -48,6 +48,15 @@
                 name="email" 
                 type="email" matInput placeholder="Enter Here" />
             </mat-form-field>
+            <!-- Address field -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Address</mat-label>
+                <input 
+                required
+                [(ngModel)] = "user.address"
+                name="address" 
+                type="text" matInput placeholder="Enter Here" />
+            </mat-form-field>
 
             <div class="container text-center">
                 <button type="submit" mat-raised-button color="primary">Register</button>
