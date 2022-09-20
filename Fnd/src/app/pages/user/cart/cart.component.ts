@@ -56,6 +56,7 @@ export class CartComponent implements OnInit {
           (product) => product.cartId != cartId
         );
         Swal.fire('Success', 'Product deleted', 'success');
+        window.location.reload();
       },
       (error) => {
         Swal.fire('Error', 'Error in deleting product');
