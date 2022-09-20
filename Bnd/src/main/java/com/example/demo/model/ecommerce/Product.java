@@ -1,5 +1,10 @@
 package com.example.demo.model.ecommerce;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,7 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "product")
@@ -25,6 +33,28 @@ public class Product {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
 	
+	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JsonIgnore
+//	private Set<Cart> carts = new HashSet<>();
+//	
+//	public Set<Cart> getCarts() {
+//		return carts;
+//	}
+//	public void setCarts(Set<Cart> carts) {
+//		this.carts = carts;
+//	}
+	
+	 @JsonIgnore
+	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+	private Set<Cart> carts = new HashSet<>();
+	
+	public Set<Cart> getCarts() {
+		return carts;
+	}
+	public void setCarts(Set<Cart> carts) {
+		this.carts = carts;
+	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub

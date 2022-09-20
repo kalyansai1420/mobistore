@@ -17,23 +17,14 @@
           <p>
             {{ p.pDescription }}
           </p>
-
-          <!-- <h3>
-            Price
-            {{ p.pPrice }}
-          </h3> -->
         </mat-card-content>
 
         <mat-card-actions class="btn-group">
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="addToCart(p)"
-          >
+          <button mat-raised-button color="primary" (click)="addToCart(p.pid)">
             Add to Cart
           </button>
           <button mat-raised-button color="warn">
-            {{ p.pPrice }}
+            {{ p.pPrice| currency: "INR" }}
           </button>
         </mat-card-actions>
       </mat-card>

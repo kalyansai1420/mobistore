@@ -11,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.example.demo.model.ecommerce.Cart;
 import com.example.demo.model.ecommerce.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -34,32 +36,40 @@ public class User implements UserDetails{
 	private String image;
 	private boolean enabled=true;
 	
-	//User many roles
-	// @OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "category")
-	//  private Set<Category> category = new HashSet<>();
-	 
-	//  public Set<Category> getCategory() {
-	// 		return category;
-	// 	}
+	// user to category
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+	@JsonIgnore
+	private Set<Category> category = new HashSet<>();
 
+	public Set<Category> getCategory() {
+		return category;
+	}
+	public void setCategory(Set<Category> category) {
+		this.category = category;
+	}
 
-	// 	public void setCategory(Set<Category> category) {
-	// 		this.category = category;
-	// 	}
-		
-		// user to category
-		@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-		@JsonIgnore
-		private Set<Category> category = new HashSet<>();
-
-		public Set<Category> getCategory() {
-			return category;
-		}
+	// user to cart
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
+	@JsonIgnore
+	private Cart cart;
 	
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	
+	
+	//user to role
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
 	@JsonIgnore
 	private Set<UserRole> userRoles = new HashSet<>();
 		
+	
+
+
 	public User() {
 		
 	}

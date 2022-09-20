@@ -40,4 +40,6 @@ export class ProductService {
   public getProductOfCategory(cid) {
     return this._http.get(`${baseUrl}/product/category/${cid}`)
   }
+
+  
 }

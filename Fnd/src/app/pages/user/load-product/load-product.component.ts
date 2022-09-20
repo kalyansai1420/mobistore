@@ -1,29 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
+import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-load-product',
   templateUrl: './load-product.component.html',
   styleUrls: ['./load-product.component.css'],
 })
 export class LoadProductComponent implements OnInit {
+  @Input() user;
+  @Input() id;
+  isLoggedIn = false;
   catId;
   products;
+  p;
+  productCart = {
+    product: {
+      pid: '',
+    },
+    user: {
+      id: '',
+    },
+  };
   constructor(
     private _route: ActivatedRoute,
     private _product: ProductService,
-    private _cartService: CartService
+    private _cartService: CartService,
+    private login: LoginService
   ) {}
-  addToCart(product: LoadProductComponent) {
-    this._cartService.addToCart(product);
-    //window.alert('Your product has been added to the cart!');
+
+  addToCart(p) {
+    // console.log(pid);
+    console.log(p);
+    this.productCart.product.pid = p;
+    this.productCart.user.id = this.id;
+    this._cartService.addProducttoCart(this.productCart).subscribe(
+      (data: any) => {
+        
+        Swal.fire('Success', 'Product got added', 'success');
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error);
+        Swal.fire('Error', 'Server Error', 'error');
+      }
+    );
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.login.isLoggedIn();
+    this.user = this.login.getUser();
+    this.login.loginStatusSubject.asObservable().subscribe((data: any) => {
+      this.isLoggedIn = this.login.isLoggedIn();
+      this.user = this.login.getUser();
+    });
+    this.id = this.user.id;
     this._route.params.subscribe((params) => {
       this.catId = this._route.snapshot.params['catId'];
-      //this.catId = params['catId'];
       if (this.catId == 0) {
         this._product.products().subscribe(
           (data: any) => {
