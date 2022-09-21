@@ -39,6 +39,7 @@ import { UpdateProductComponent } from './pages/admin/update-product/update-prod
 import { UserSidebarComponent } from './pages/user/user-sidebar/user-sidebar.component';
 import { LoadProductComponent } from './pages/user/load-product/load-product.component';
 import { CartComponent } from './pages/user/cart/cart.component';
+import { OrderComponent } from './pages/user/order/order.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { CartComponent } from './pages/user/cart/cart.component';
     UserSidebarComponent,
     LoadProductComponent,
     CartComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

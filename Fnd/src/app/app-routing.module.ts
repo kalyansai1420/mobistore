@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoadProductComponent } from './pages/user/load-product/load-product.component';
+import { OrderComponent } from './pages/user/order/order.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
@@ -78,6 +79,10 @@ const routes: Routes = [
       {
         path: ':catId',
         component:LoadProductComponent
+      },
+      {
+        path: 'order',
+        component:OrderComponent
       }
     ]
   },
