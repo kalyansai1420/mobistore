@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
+
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-cart',
