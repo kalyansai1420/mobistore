@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { OrderServiceService } from 'src/app/services/order-service.service';
 
+declare let Razorpay: any;
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -22,8 +24,8 @@ export class PaymentComponent implements OnInit {
     alert('Hello DK');
   }
 
-  @Input() paymentId: string;
-  @Input() error: string;
+  @Input() paymentId;
+  @Input() error;
 
   options = {
     key: '',
@@ -34,7 +36,7 @@ export class PaymentComponent implements OnInit {
       'https://www.javachinna.com/wp-content/uploads/2020/02/android-chrome-512x512-1.png',
     order_id: '',
     handler: function (response) {
-      var event = new CustomEvent('payment.success', {
+      let event = new CustomEvent('payment.success', {
         detail: response,
         bubbles: true,
         cancelable: true,

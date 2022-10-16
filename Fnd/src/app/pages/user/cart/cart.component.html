@@ -1,3 +1,4 @@
+<!-- {{products|json}} -->
 <mat-card>
   <div class="cart-item" *ngFor="let p of products">
     <div class="cart-left">
@@ -17,10 +18,10 @@
     <p>Total {{cartTotal| currency: "INR"}}</p>
   </div>
   <button
+  (click)="paymentbtn()"
     class="button-two"
-    routerLink="/confirmation"
+    [routerLink]="'/pg/'"
     routerLinkActive="active"
-    
   >
     Checkout
   </button>

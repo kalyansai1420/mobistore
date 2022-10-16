@@ -9,6 +9,7 @@ import { ViewProductsComponent } from './pages/admin/view-products/view-products
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoadProductComponent } from './pages/user/load-product/load-product.component';
@@ -78,7 +79,11 @@ const routes: Routes = [
       {
         path: ':catId',
         component:LoadProductComponent
-      }
+      },
+      // {
+      //   path: '/pg/',
+      //   component:PaymentComponent
+      // }
     ]
   },
 ];

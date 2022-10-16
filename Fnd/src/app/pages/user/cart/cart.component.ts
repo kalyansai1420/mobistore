@@ -15,7 +15,9 @@ export class CartComponent implements OnInit {
   @Input() user;
   @Input() id;
 
-  constructor(private _cartService: CartService, private login: LoginService) {}
+  constructor(
+    private _cartService: CartService,
+    private login: LoginService) { }
 
   ngOnInit(): void {
     this.getUserId();
@@ -37,9 +39,9 @@ export class CartComponent implements OnInit {
       (data: any) => {
         this.products = data;
         console.log(data);
-        console.log(data[0].product.pPrice)
-        for (let i = 0; i < data.length; i++) { 
-          this.cartTotal = this.cartTotal+ parseInt(data[i].product.pPrice)
+        console.log(data[0].product.pPrice);
+        for (let i = 0; i < data.length; i++) {
+          this.cartTotal = this.cartTotal + parseInt(data[i].product.pPrice);
         }
       },
       (error: any) => {
@@ -47,8 +49,6 @@ export class CartComponent implements OnInit {
       }
     );
   }
-
- 
 
   removeProductfromCart(cartId) {
     this._cartService.removeProductfromCart(cartId).subscribe(
@@ -63,5 +63,8 @@ export class CartComponent implements OnInit {
         Swal.fire('Error', 'Error in deleting product');
       }
     );
+  }
+  paymentbtn() {
+    console.log("payment btn clicked")
   }
 }
