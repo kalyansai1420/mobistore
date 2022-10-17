@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService{
 	//creating user
 	@Override
 	public User createUser(User user, Set<UserRole> userRoles) throws Exception{
-		// TODO Auto-generated method stub
 		
 		User local = this.userRepository.findByUsername(user.getUsername());
 		if(local != null) {
@@ -44,14 +43,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUser(String username) {
-		// TODO Auto-generated method stub
 		
 		return this.userRepository.findByUsername(username);
 	}
 
 	@Override
 	public void deleteUser(Long userId) {
-		// TODO Auto-generated method stub
 		this.userRepository.deleteById(userId);
 		
 	}

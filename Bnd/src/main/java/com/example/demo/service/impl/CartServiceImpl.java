@@ -20,31 +20,26 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public Cart addCart(Cart cart) {
-		// TODO Auto-generated method stub
 		return this.cartRepository.save(cart);
 	}
 
 	@Override
 	public Cart updateCart(Cart cart) {
-		// TODO Auto-generated method stub
 		return this.cartRepository.save(cart);
 	}
 
 	@Override
 	public Set<Cart> getCarts() {
-		// TODO Auto-generated method stub
 		return new HashSet<>(this.cartRepository.findAll());
 	}
 
 	@Override
 	public Cart getCart(Long cartId) {
-		// TODO Auto-generated method stub
 		return this.cartRepository.findById(cartId).get();
 	}
 
 	@Override
 	public void deleteCart(Long cartId) {
-		// TODO Auto-generated method stub
 		Cart cart = new Cart();
 		cart.setCartId(cartId);
 		this.cartRepository.delete(cart);
@@ -52,9 +47,8 @@ public class CartServiceImpl implements CartService{
 
 	@Override
 	public List<Cart> getCartofUser(User user) {
-		// TODO Auto-generated method stub
 		return this.cartRepository.findByUser(user);
-	};
+	}
 	
 	
 	

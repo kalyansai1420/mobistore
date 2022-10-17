@@ -36,7 +36,6 @@ public class Category {
 	
 	public Category() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Category(Long cid, String cTitle, String cDescription) {
 		super();

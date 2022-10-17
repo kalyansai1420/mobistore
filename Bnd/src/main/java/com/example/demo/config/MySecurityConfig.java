@@ -23,60 +23,54 @@ import com.example.demo.service.impl.UserDetailsServiceImpl;
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class MySecurityConfig extends WebSecurityConfigurerAdapter{
-	
+public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
-	
+
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsServiceImpl;
-	
+
 	@Override
 	@Bean
 	protected AuthenticationManager authenticationManager() throws Exception {
 		// TODO Auto-generated method stub
 		return super.authenticationManager();
 	}
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this.userDetailsServiceImpl).passwordEncoder(passwordEncoder());
-		
-		
+
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		http
 				.csrf()
 				.disable()
 				.cors()
 				.disable()
 				.authorizeRequests()
-				.antMatchers("/generate-token","/user/").permitAll()
+				.antMatchers("/generate-token", "/user/").permitAll()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 				.and()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		
+
 		http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-		
-		
+
 	}
-	
-	
-	
+
 }

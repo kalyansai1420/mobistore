@@ -13,7 +13,6 @@ import com.example.demo.helper.UserFoundException;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.model.UserRole;
-import com.example.demo.repo.RoleRepository;
 import com.example.demo.service.UserService;
 
 @SpringBootApplication
@@ -32,7 +31,6 @@ public class ECommerceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		 try {
-		// TODO Auto-generated method stub
 		System.out.println("starting code");
 		
 		User user = new User();

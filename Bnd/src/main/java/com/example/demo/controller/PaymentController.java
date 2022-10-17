@@ -3,9 +3,9 @@ package com.example.demo.controller;
 import java.math.BigInteger;
 
 import org.json.JSONObject;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.ecommerce.OrderRequest;
@@ -25,7 +25,7 @@ public class PaymentController {
     private static final String SECRET_ID2 = "rzp_test_ssRb8fdXs3CLgp";
     private static final String SECRET_KEY2 = "tcBPRXcnkiF5Ian3ANFhWYDS";
 
-    @RequestMapping(path = "/createOrder", method = RequestMethod.POST)
+    @PostMapping(path = "/createOrder")
     public OrderResponse createOrder(@RequestBody OrderRequest orderRequest) {
         OrderResponse response = new OrderResponse();
         try {
@@ -55,7 +55,6 @@ public class PaymentController {
 
             return response;
         } catch (RazorpayException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
