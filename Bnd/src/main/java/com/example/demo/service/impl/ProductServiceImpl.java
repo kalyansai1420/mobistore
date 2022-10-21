@@ -2,11 +2,13 @@ package com.example.demo.service.impl;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.helper.ResourceNotFoundException;
 import com.example.demo.model.ecommerce.Category;
 import com.example.demo.model.ecommerce.Product;
 import com.example.demo.repo.ProductRepository;
@@ -35,7 +37,12 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Product getProduct(Long productId) {
-		return this.productRepository.findById(productId).get();
+		Optional<Product> product = this.productRepository.findById(productId);
+		if (product.isPresent()) {
+			return product.get();
+		} else {
+			throw new ResourceNotFoundException("product not found: " + productId);
+		}
 	}
 
 	@Override

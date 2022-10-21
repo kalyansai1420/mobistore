@@ -5,16 +5,16 @@ import org.springframework.security.core.GrantedAuthority;
 public class Authority implements GrantedAuthority{
 
 	
-	private String authority;
+	private String authority1;
 		
-	public Authority(String authority) {
+	public Authority(String authority1) {
 		super();
-		this.authority = authority;
+		this.authority1 = authority1;
 	}
 
 	@Override
 	public String getAuthority() {
-		return this.authority;
+		return this.authority1;
 	}
 	
 

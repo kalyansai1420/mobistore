@@ -36,7 +36,7 @@ public class UserController {
 	
 	//creating User
 	@PostMapping("/")
-	public User createUser(@RequestBody User user) throws Exception {
+	public User createUser(@RequestBody User user) {
 		
 		
 		user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));

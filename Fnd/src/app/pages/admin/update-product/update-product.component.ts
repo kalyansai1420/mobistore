@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./update-product.component.css'],
 })
 export class UpdateProductComponent implements OnInit {
-  private routeSub: Subscription;
   constructor(
+    private routeSub: Subscription,
     private _route: ActivatedRoute,
     private _product: ProductService,
     private _cat: CategoryService,

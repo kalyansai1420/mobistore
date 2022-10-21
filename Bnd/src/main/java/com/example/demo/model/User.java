@@ -22,9 +22,9 @@ import com.example.demo.model.ecommerce.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="user")
-public class User implements UserDetails{
-	
+@Table(name = "user")
+public class User implements UserDetails {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -34,25 +34,26 @@ public class User implements UserDetails{
 	private String phone;
 	private String address;
 	private String image;
-	private boolean enabled=true;
-	
+	private boolean enabled = true;
+
 	// user to category
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	@JsonIgnore
-	private Set<Category> category = new HashSet<>();
+	private transient Set<Category> category = new HashSet<>();
 
 	public Set<Category> getCategory() {
 		return category;
 	}
+
 	public void setCategory(Set<Category> category) {
 		this.category = category;
 	}
 
 	// user to cart
-	@OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
 	@JsonIgnore
-	private Cart cart;
-	
+	private transient Cart cart;
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -60,32 +61,25 @@ public class User implements UserDetails{
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-	
-	//user to role
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
-	@JsonIgnore
-	private Set<UserRole> userRoles = new HashSet<>();
-		
-	
 
+	// user to role
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+	@JsonIgnore
+	private transient Set<UserRole> userRoles = new HashSet<>();
 
 	public User() {
-		
+
 	}
-	
 
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
 
-
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
 	}
 
-
-	public User(Long id, String username, String password, String email, String phone, String address, String image,
+	public User(Long id, String username, String password, String email, String phone, String address,
 			boolean enabled) {
 		super();
 		this.id = id;
@@ -94,11 +88,8 @@ public class User implements UserDetails{
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
-		this.image = image;
 		this.enabled = enabled;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -164,41 +155,29 @@ public class User implements UserDetails{
 		this.enabled = enabled;
 	}
 
-
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		Set<Authority> set = new HashSet<>();
-		this.userRoles.forEach(userRole ->
-			set.add(new Authority(userRole.getRole().getRoleName()))
-		);
-		
-		return set;
-		
-	}
 
+		Set<Authority> set = new HashSet<>();
+		this.userRoles.forEach(userRole -> set.add(new Authority(userRole.getRole().getRoleName())));
+
+		return set;
+
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
-
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
-
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
-
-
-	
-	
-	
-	
 
 }

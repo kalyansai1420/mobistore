@@ -23,21 +23,25 @@ public class UserServiceImpl implements UserService{
 	
 	//creating user
 	@Override
-	public User createUser(User user, Set<UserRole> userRoles) throws Exception{
+	public User createUser(User user, Set<UserRole> userRoles) {
 		
 		User local = this.userRepository.findByUsername(user.getUsername());
-		if(local != null) {
-			System.out.println("User is already there");
-			throw new UserFoundException();
-		}else {
-			// user create
-			for(UserRole ur:userRoles) {
+
+		if (local != null) {
+			try {
+				throw new UserFoundException("User already present");
+			} catch (UserFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			for (UserRole ur : userRoles) {
 				roleRepository.save(ur.getRole());
 			}
 			user.getUserRoles().addAll(userRoles);
-			local= this.userRepository.save(user);
+
+			local = this.userRepository.save(user);
+
 		}
-		
 		return local;
 	}
 

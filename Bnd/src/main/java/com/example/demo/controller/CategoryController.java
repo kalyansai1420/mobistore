@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -38,8 +40,8 @@ public class CategoryController {
 
 	// get all categories
 	@GetMapping("/")
-	public ResponseEntity<?> getCategories() {
-		return ResponseEntity.ok(this.categoryService.getCategories());
+	public Set<Category> getCategories() {
+		return this.categoryService.getCategories();
 	}
 
 	// update category

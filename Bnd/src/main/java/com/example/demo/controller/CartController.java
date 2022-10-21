@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,9 +42,10 @@ public class CartController {
 	
 	//get all carts
 	@GetMapping("/")
-	public ResponseEntity<?> getCarts(){
-		return ResponseEntity.ok(this.cartService.getCarts());
+	public Set<Cart> getCarts() {
+		return this.cartService.getCarts();
 	}
+
 	
 	//update cart
 	@PutMapping("/")

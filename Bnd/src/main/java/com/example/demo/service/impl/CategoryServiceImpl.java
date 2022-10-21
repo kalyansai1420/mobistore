@@ -1,18 +1,20 @@
 package com.example.demo.service.impl;
 
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.helper.ResourceNotFoundException;
 import com.example.demo.model.ecommerce.Category;
 import com.example.demo.repo.CategoryRepository;
 import com.example.demo.service.CategoryService;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
-	
+public class CategoryServiceImpl implements CategoryService {
+
 	@Autowired
 	private CategoryRepository categoryRepository;
 
@@ -33,7 +35,13 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public Category getCategory(Long categoryId) {
-		return this.categoryRepository.findById(categoryId).get();
+		Optional<Category> category = this.categoryRepository.findById(categoryId);
+		if (category.isPresent()) {
+			return category.get();
+		} else {
+			throw new ResourceNotFoundException("Category not found");
+		}
+
 	}
 
 	@Override
@@ -41,7 +49,7 @@ public class CategoryServiceImpl implements CategoryService{
 		Category category = new Category();
 		category.setCid(categoryId);
 		this.categoryRepository.delete(category);
-		
+
 	}
 
 }

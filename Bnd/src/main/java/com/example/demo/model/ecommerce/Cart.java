@@ -22,9 +22,7 @@ public class Cart {
     
     private Long count;
     
-//    @JoinColumn(name="pid")
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private Product product;
+
     @ManyToOne
     @JoinColumn(name = "pid")
     private Product product;

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -17,7 +18,9 @@ export class CartComponent implements OnInit {
 
   constructor(
     private _cartService: CartService,
-    private login: LoginService) { }
+    private login: LoginService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUserId();
@@ -65,6 +68,7 @@ export class CartComponent implements OnInit {
     );
   }
   paymentbtn() {
-    console.log("payment btn clicked")
+    console.log('payment btn clicked');
+    this._router.navigate(['payment']);
   }
 }

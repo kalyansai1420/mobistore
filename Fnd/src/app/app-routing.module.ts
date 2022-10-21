@@ -44,32 +44,29 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
       },
       {
         path: 'categories',
-        component:ViewCategoriesComponent
+        component: ViewCategoriesComponent,
       },
       {
         path: 'add-category',
-        component:AddCategoryComponent
+        component: AddCategoryComponent,
       },
       {
         path: 'products',
-        component:ViewProductsComponent
+        component: ViewProductsComponent,
       },
       {
         path: 'add-product',
-        component:AddProductComponent
+        component: AddProductComponent,
       },
       {
         path: 'product/:pid',
-        component:UpdateProductComponent
+        component: UpdateProductComponent,
       },
-      
-
-    ]
-
+    ],
   },
   {
     path: 'user-dashboard',
@@ -78,18 +75,19 @@ const routes: Routes = [
     children: [
       {
         path: ':catId',
-        component:LoadProductComponent
+        component: LoadProductComponent,
       },
-      // {
-      //   path: '/pg/',
-      //   component:PaymentComponent
-      // }
-    ]
+    ],
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+    pathMatch: 'full',
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

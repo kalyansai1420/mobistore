@@ -83,7 +83,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
     MatTableModule,
     FlexLayoutModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

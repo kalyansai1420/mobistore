@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.config.JwtUtils;
+import com.example.demo.helper.UserNotFoundException;
 import com.example.demo.model.JwtRequest;
 import com.example.demo.model.JwtResponse;
 import com.example.demo.model.User;
@@ -27,52 +28,47 @@ public class AuthenticateController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
-	
+
 	@Autowired
-	private JwtUtils jwtUtils; 
-	
-	
-	
-	 @PostMapping("/generate-token")
-	    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception{
-	       
-        try {
-	            
-	            authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	            throw new Exception("User Not Found ");
-	        }
-	       
+	private JwtUtils jwtUtils;
 
-	        UserDetails userDetails=this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
-	        String token = this.jwtUtils.generateToken(userDetails);        
-	        return ResponseEntity.ok(new JwtResponse(token));
-	    }
-	
-	
-	public void authenticate(String username,String password) throws Exception {
-		
+	@PostMapping("/generate-token")
+	public JwtResponse generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-		}catch(DisabledException e){
-			throw new Exception("USER DISABLED "+ e.getMessage());
-		}catch (BadCredentialsException e) {
 
-			throw new Exception("Invalid Credentials"+ e.getMessage());
+			authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new UserNotFoundException("User Not Found ");
 		}
-		
+
+		UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+		String token = this.jwtUtils.generateToken(userDetails);
+		return new JwtResponse(token);
 	}
-	
-	//return details of current user
+
+	public void authenticate(String username, String password) throws Exception {
+
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+		} catch (DisabledException e) {
+			throw new UserNotFoundException("USER DISABLED " + e.getMessage());
+		} catch (BadCredentialsException e) {
+
+			throw new UserNotFoundException("Invalid Credentials" + e.getMessage());
+		}
+
+	}
+
+	// return details of current user
 	@GetMapping("/current-user")
 	public User getCurrentUser(Principal principal) {
-		
+
 		return ((User) this.userDetailsService.loadUserByUsername(principal.getName()));
 	}
-	
-	
+
 }

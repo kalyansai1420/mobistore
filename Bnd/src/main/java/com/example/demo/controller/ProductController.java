@@ -16,6 +16,7 @@ import com.example.demo.model.ecommerce.Category;
 import com.example.demo.model.ecommerce.Product;
 import com.example.demo.service.ProductService;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/product")
@@ -39,8 +40,8 @@ public class ProductController {
 
     // get all products
     @GetMapping("/")
-    public ResponseEntity<?> getProducts() {
-        return ResponseEntity.ok(this.productService.getProducts());
+    public Set<Product> getProducts() {
+        return this.productService.getProducts();
     }
 
     // update product
@@ -62,11 +63,5 @@ public class ProductController {
         return this.productService.getProductOfCategory(category);
     }
 
-    // @GetMapping("/cart/{id}")
-    // public List<Product> getProductsOfCart(@PathVariable("id") Long id) {
-    //     Cart cart = new Cart();
-    //     cart.setCartId(id);
-    //     return this.productService.getProductOfCart(cart);
-    // }
 
 }
