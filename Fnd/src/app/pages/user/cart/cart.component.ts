@@ -63,4 +63,7 @@ export class CartComponent implements OnInit {
       }
     );
   }
+  checkout() {
+    console.log("checkout clicked");
+  }
 }
