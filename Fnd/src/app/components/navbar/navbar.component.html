@@ -31,6 +31,16 @@
     Home
     
   </button>
+  <button
+    *ngIf="isLoggedIn && auth =='Normal'"
+    class="example-icon favorite-icon ml20"
+    mat-button
+    routerLink="/payment"
+    aria-label="Example icon-button with heart icon"
+  >
+    Cart
+    
+  </button>
    
 
  

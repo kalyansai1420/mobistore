@@ -1,30 +1,30 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import Swal from 'sweetalert2';
+
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.css'],
 })
-export class CartComponent implements OnInit {
+export class PaymentComponent implements OnInit {
   isLoggedIn = false;
   products;
   cartTotal = 0;
   @Input() user;
   @Input() id;
-
   constructor(
     private _cartService: CartService,
-    private _router: Router,
-    private login: LoginService) { }
+    private login: LoginService,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUserId();
     this.getProducts();
   }
-
   getUserId() {
     this.isLoggedIn = this.login.isLoggedIn();
     this.user = this.login.getUser();
@@ -39,20 +39,15 @@ export class CartComponent implements OnInit {
     this._cartService.getProductofCart(this.id).subscribe(
       (data: any) => {
         this.products = data;
-        console.log(data);
-        console.log(data[0].product.pPrice)
-        for (let i = 0; i < data.length; i++) { 
-          this.cartTotal = this.cartTotal+ parseInt(data[i].product.pPrice)
+        for (let i = 0; i < data.length; i++) {
+          this.cartTotal = this.cartTotal + parseInt(data[i].product.pPrice);
         }
       },
       (error: any) => {
         console.log(error);
       }
-      
     );
   }
-
- 
 
   removeProductfromCart(cartId) {
     this._cartService.removeProductfromCart(cartId).subscribe(
@@ -68,8 +63,8 @@ export class CartComponent implements OnInit {
       }
     );
   }
-  checkout() {
-    console.log("checkout clicked");
-    this._router.navigate(['payment']);
+
+  paymentgateway() {
+    this._router.navigate(['paymentconfirmation']);
   }
 }

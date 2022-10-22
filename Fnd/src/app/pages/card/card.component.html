@@ -1,0 +1,72 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <mat-card>
+          <div class="container text-center">
+            <img
+              class="logo-size"
+              src="../../../assets/debit-card.png"
+              alt=""
+            />
+          </div>
+          <h1 class="text-center">Payment</h1>
+
+          <form (ngSubmit)="formSubmit()">
+            <mat-form-field class="w100" appearance="outline">
+              <mat-label>Card Number</mat-label>
+              <input
+                [(ngModel)]="cardData.cardNumber"
+                required
+                autofocus
+                type="text"
+                name="cardNumber"
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+            <mat-form-field class="w50" appearance="outline">
+              <mat-label>Month</mat-label>
+              <input
+                required
+                [(ngModel)]="cardData.cardMonth"
+                autofocus
+                type="text"
+                name="cardMonth"
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+            <mat-form-field class="w50" appearance="outline">
+              <mat-label>Year</mat-label>
+              <input
+                [(ngModel)]="cardData.cardYear"
+                required
+                autofocus
+                type="text"
+                name="cardYear"
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+            <mat-form-field class="w50" appearance="outline">
+              <mat-label>CVV</mat-label>
+              <input
+                required
+                [(ngModel)]="cardData.cardCVV"
+                autofocus
+                type="text"
+                name="cardCVV"
+                matInput
+                placeholder="Enter here"
+              />
+            </mat-form-field>
+            <div class="container text-center mt15">
+              <button mat-raised-button color="accent">Proceed</button>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

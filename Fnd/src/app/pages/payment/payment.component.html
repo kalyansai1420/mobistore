@@ -1,0 +1,28 @@
+<mat-card>
+  <div class="cart-item" *ngFor="let p of products">
+    <div class="cart-left">
+      <img src="{{ p.product.pPhoto }}" alt="" mat-card-image />
+    </div>
+    <div class="cart-right">
+      <h4>{{ p.product.pName }}</h4>
+      <p>{{ p.product.pPrice | currency: "INR"}}</p>
+      <mat-card-actions class="btn-group">
+        <button class="button-two" (click)="removeProductfromCart(p.cartId)">
+          <span>Remove</span>
+        </button>
+      </mat-card-actions>
+    </div>
+  </div>
+  <div class="cart-item">
+    <p>Total {{cartTotal| currency: "INR"}}</p>
+  </div>
+  <div class="cart-item">
+      <button
+        class="button-two payment"
+        routerLinkActive="active"
+       (click)="paymentgateway()"
+      >
+        Proceed to Payment
+      </button>
+  </div>
+</mat-card>

@@ -19,6 +19,7 @@ export class LoadProductComponent implements OnInit {
   productCart = {
     product: {
       pid: '',
+      count:'1',
     },
     user: {
       id: '',
@@ -30,24 +31,6 @@ export class LoadProductComponent implements OnInit {
     private _cartService: CartService,
     private login: LoginService
   ) {}
-
-  addToCart(p) {
-    // console.log(pid);
-    console.log(p);
-    this.productCart.product.pid = p;
-    this.productCart.user.id = this.id;
-    this._cartService.addProducttoCart(this.productCart).subscribe(
-      (data: any) => {
-        
-        Swal.fire('Success', 'Product got added', 'success');
-        window.location.reload();
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire('Error', 'Server Error', 'error');
-      }
-    );
-  }
 
   ngOnInit(): void {
     this.isLoggedIn = this.login.isLoggedIn();
@@ -84,4 +67,21 @@ export class LoadProductComponent implements OnInit {
       }
     });
   }
+
+  addToCart(p) {    
+    this.productCart.product.pid = p;
+    this.productCart.user.id = this.id;
+    this._cartService.addProducttoCart(this.productCart).subscribe(
+      (data: any) => {
+        Swal.fire('Success', 'Product got added', 'success');
+        window.location.reload();
+      },
+      (error) => {
+        console.log(error);
+        Swal.fire('Error', 'Server Error', 'error');
+      }
+    );
+  }
+  
+  
 }

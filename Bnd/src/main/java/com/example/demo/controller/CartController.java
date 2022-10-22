@@ -60,9 +60,19 @@ public class CartController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public List<Cart> getCartofUser(@PathVariable("id") Long id){
-		 User user = new User();
-		 user.setId(id);
-		 return this.cartService.getCartofUser(user);
+	public List<Cart> getCartofUser(@PathVariable("id") Long id) {
+		User user = new User();
+		user.setId(id);
+		return this.cartService.getCartofUser(user);
 	}
+	
+	// //delete whole cart
+	// @DeleteMapping("/user/{id}")
+	// public void deleteCartOfUser(@PathVariable("id") Long id) {
+	// 	// User user = new User();
+	// 	// user.setId(id);
+	// 	// Cart cart = new Cart();
+	// 	// cart.setUser(user);
+	// 	this.cartService.deleteCartOfUser(id);
+	// }
 }

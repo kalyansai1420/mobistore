@@ -54,7 +54,30 @@ public class CartServiceImpl implements CartService{
 	public List<Cart> getCartofUser(User user) {
 		// TODO Auto-generated method stub
 		return this.cartRepository.findByUser(user);
-	};
+	}
+
+	// @Override
+	// public void deleteCartOfUser(Long userId) {
+	// 	// TODO Auto-generated method stub
+	// 	User user = new User();
+	// 	user.setId(userId);
+	// 	Cart cart = new Cart();
+	// 	cart.setUser(user);
+	// 	this.cartRepository.deleteByUserId(userId);
+		
+	// }
+
+	// @Override
+	// public void deleteCartOfUser(User user) {
+	// 	// TODO Auto-generated method stub
+		
+	// 	Cart cart = new Cart();
+	// 	cart.setUser(user);
+
+	// 	this.cartRepository.deleteByUser(user);
+	// };
+
+	
 	
 	
 	

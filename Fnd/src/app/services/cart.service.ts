@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { LoadProductComponent } from '../pages/user/load-product/load-product.component';
 import baseUrl from './helper';
@@ -27,5 +28,15 @@ export class CartService {
   //get product from cart
   public getProductofCart(id) {
     return this._http.get(`${baseUrl}/cart/user/${id}`)
+  }
+
+  //update product
+  public updateProduct(productCart) {
+    return this._http.put(`${baseUrl}/cart/`, productCart);
+  }
+
+  //empty cart
+  public emptyCart(id) {
+    return this._http.get(`${baseUrl}/cart/user/${id}`);
   }
 }

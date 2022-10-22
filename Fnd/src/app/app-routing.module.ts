@@ -7,10 +7,13 @@ import { UpdateProductComponent } from './pages/admin/update-product/update-prod
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 import { ViewProductsComponent } from './pages/admin/view-products/view-products.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
+import { CardComponent } from './pages/card/card.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { CartComponent } from './pages/user/cart/cart.component';
 import { LoadProductComponent } from './pages/user/load-product/load-product.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
@@ -43,32 +46,29 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
       },
       {
         path: 'categories',
-        component:ViewCategoriesComponent
+        component: ViewCategoriesComponent,
       },
       {
         path: 'add-category',
-        component:AddCategoryComponent
+        component: AddCategoryComponent,
       },
       {
         path: 'products',
-        component:ViewProductsComponent
+        component: ViewProductsComponent,
       },
       {
         path: 'add-product',
-        component:AddProductComponent
+        component: AddProductComponent,
       },
       {
         path: 'product/:pid',
-        component:UpdateProductComponent
+        component: UpdateProductComponent,
       },
-      
-
-    ]
-
+    ],
   },
   {
     path: 'user-dashboard',
@@ -77,10 +77,20 @@ const routes: Routes = [
     children: [
       {
         path: ':catId',
-        component:LoadProductComponent
-      }
-    ]
+        component: LoadProductComponent,
+      },
+    ],
   },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'paymentconfirmation',
+    component: CardComponent,
+    pathMatch:'full'
+  }
 ];
 
 @NgModule({

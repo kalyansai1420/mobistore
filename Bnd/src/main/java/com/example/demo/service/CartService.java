@@ -19,4 +19,7 @@ public interface CartService {
 	public void deleteCart(Long cartId);
 	
 	public List<Cart> getCartofUser(User user);
+
+	// public void deleteCartOfUser(Long userId);
+	
 }
