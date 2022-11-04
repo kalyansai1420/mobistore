@@ -23,3 +23,10 @@ Technology Stack:
 
 # ER Diagram
 ![E-Commerce - Page 1](https://user-images.githubusercontent.com/66724102/181594083-1fd33f9c-73e7-4541-b3e0-b59a8f18948b.jpeg)
+
+# User Page
+![](Screenshots/User_Dashboard.png)
+![](Screenshots/User_Checkout.png)
+
+# Admin Page
+![](Screenshots/Admin_Dashboard.png)
