@@ -2,6 +2,8 @@ package com.example.demo.service.impl;
 
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,9 @@ import com.example.demo.repo.UserRepository;
 import com.example.demo.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
+	
+	Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -24,11 +28,10 @@ public class UserServiceImpl implements UserService{
 	//creating user
 	@Override
 	public User createUser(User user, Set<UserRole> userRoles) throws Exception{
-		// TODO Auto-generated method stub
 		
 		User local = this.userRepository.findByUsername(user.getUsername());
 		if(local != null) {
-			System.out.println("User is already there");
+			log.debug("User is already there");
 			throw new UserFoundException();
 		}else {
 			// user create
@@ -44,14 +47,12 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUser(String username) {
-		// TODO Auto-generated method stub
 		
 		return this.userRepository.findByUsername(username);
 	}
 
 	@Override
 	public void deleteUser(Long userId) {
-		// TODO Auto-generated method stub
 		this.userRepository.deleteById(userId);
 		
 	}

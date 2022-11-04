@@ -9,17 +9,13 @@ import com.example.demo.model.ecommerce.Cart;
 public interface CartService {
 
 	public Cart addCart(Cart cart);
-	
-	public Cart updateCart(Cart cart);
-	
+
 	public Set<Cart> getCarts();
-	
+
 	public Cart getCart(Long cartId);
-	
+
 	public void deleteCart(Long cartId);
-	
+
 	public List<Cart> getCartofUser(User user);
 
-	// public void deleteCartOfUser(Long userId);
-	
 }

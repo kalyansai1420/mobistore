@@ -9,7 +9,6 @@
         </div>
         <h1 class="text-center">Login</h1>
 
-        {{loginData | json}}
 
         <form (ngSubmit)="formSubmit()" >
             <!-- UserName field -->
@@ -33,7 +32,6 @@
             </mat-form-field>
              <div class="container text-center">
                 <button type="submit" mat-raised-button color="primary">Login</button>
-                <button class="ml20" mat-raised-button color="accent">Reset</button>
             </div>
         </form>
         </mat-card>

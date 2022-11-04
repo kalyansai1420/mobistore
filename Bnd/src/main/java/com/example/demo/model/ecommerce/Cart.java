@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,9 +22,7 @@ public class Cart {
     
     private Long count;
     
-//    @JoinColumn(name="pid")
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private Product product;
+
     @ManyToOne
     @JoinColumn(name = "pid")
     private Product product;

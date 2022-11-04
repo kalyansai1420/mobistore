@@ -1,10 +1,8 @@
 package com.example.demo.model.ecommerce;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,18 +30,7 @@ public class Product {
 	@JoinColumn(name = "cid")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
-	
-	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JsonIgnore
-//	private Set<Cart> carts = new HashSet<>();
-//	
-//	public Set<Cart> getCarts() {
-//		return carts;
-//	}
-//	public void setCarts(Set<Cart> carts) {
-//		this.carts = carts;
-//	}
+
 	
 	 @JsonIgnore
 	 @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
@@ -57,7 +44,6 @@ public class Product {
 	}
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Product(Long pid, String pName, String pDescription, String pPhoto, String pPrice) {
 		super();

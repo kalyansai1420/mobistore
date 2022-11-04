@@ -19,6 +19,6 @@ export class HomeComponent implements OnInit {
       this.isLoggedIn = this.login.isLoggedIn();
       this.user = this.login.getUser();
     });
-    this.auth = this.login.getUser().authorities[0].authority;
+    // this.auth = this.login.getUser().authorities[0].authority;
   }
 }

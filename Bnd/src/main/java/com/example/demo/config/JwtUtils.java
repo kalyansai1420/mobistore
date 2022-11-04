@@ -13,8 +13,8 @@ import java.util.function.Function;
 
 @Service
 public class JwtUtils {
-	
-	private String SECRET_KEY = "ecommerce";
+
+    private String mySECRETKEY = "ecommerce";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -28,8 +28,9 @@ public class JwtUtils {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(mySECRETKEY).parseClaimsJws(token).getBody();
     }
 
     private Boolean isTokenExpired(String token) {
@@ -45,7 +46,7 @@ public class JwtUtils {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
+                .signWith(SignatureAlgorithm.HS256, mySECRETKEY).compact();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {

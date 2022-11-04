@@ -71,7 +71,7 @@ export class LoginService {
     if (user != null) {
       return user.authorities[0].authority;
     } else {
-      return null;
+      return "Normal";
     }
   }
   

@@ -1,4 +1,3 @@
-<!-- <p>navbar works!</p> -->
 <mat-toolbar>
   <a
     routerLink="/"
@@ -39,7 +38,6 @@
     aria-label="Example icon-button with heart icon"
   >
     Cart
-    
   </button>
    
 
@@ -52,7 +50,7 @@
     routerLink="/admin/profile"
     aria-label="Example icon-button with heart icon"
   >
-    {{ user.username }}
+    {{ user.username | titlecase}}
     
   </button>
   <button
@@ -62,7 +60,7 @@
     routerLink="/user-dashboard/0"
     aria-label="Example icon-button with heart icon"
   >
-    {{ user.username }}
+    {{ user.username | titlecase}}
     
   </button>
   <a

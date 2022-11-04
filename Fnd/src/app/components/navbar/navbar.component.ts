@@ -9,7 +9,6 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
 
-  //user = null;
   @Input() user;
   @Input() auth;
 
@@ -23,13 +22,9 @@ export class NavbarComponent implements OnInit {
       this.user = this.login.getUser();
     });
     this.auth = this.login.getUser().authorities[0].authority;
-
-    //console.log(this.login.getUser().authorities[0].authority);
-    //console.log(this.auth);
   }
   public logout() {
     this.login.logout();
     window.location.reload();
-    // this.login.loginStatusSubject.next(false);
   }
 }

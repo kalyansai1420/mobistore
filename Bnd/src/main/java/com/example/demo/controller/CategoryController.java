@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.CategoryService;
+import com.example.demo.dto.CategoryDto;
 import com.example.demo.model.ecommerce.Category;
 
 @RestController
@@ -25,8 +28,13 @@ public class CategoryController {
 
 	// add category
 	@PostMapping("/")
-	public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-		Category category1 = this.categoryService.addCategory(category);
+	public ResponseEntity<Category> addCategory(@RequestBody CategoryDto categoryDto) {
+
+		Category category1 = new Category();
+		category1.setCid(categoryDto.getCid());
+		category1.setcTitle(categoryDto.getcTitle());
+		category1.setcDescription(categoryDto.getcDescription());
+		category1.setProducts(categoryDto.getProducts());
 		return ResponseEntity.ok(category1);
 	}
 
@@ -38,14 +46,14 @@ public class CategoryController {
 
 	// get all categories
 	@GetMapping("/")
-	public ResponseEntity<?> getCategories() {
-		return ResponseEntity.ok(this.categoryService.getCategories());
+	public Set<Category> getCategories() {
+		return this.categoryService.getCategories();
 	}
 
 	// update category
 	@PutMapping("/")
-	public Category updateCategory(@RequestBody Category category) {
-		return this.categoryService.updateCategory(category);
+	public Category updateCategory(@RequestBody CategoryDto categoryDto) {
+		return this.categoryService.updateCategory(categoryDto);
 	}
 
 	// delete category

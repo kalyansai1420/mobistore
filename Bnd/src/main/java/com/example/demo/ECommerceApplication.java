@@ -3,6 +3,8 @@ package com.example.demo;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,12 +15,14 @@ import com.example.demo.helper.UserFoundException;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.model.UserRole;
-import com.example.demo.repo.RoleRepository;
 import com.example.demo.service.UserService;
 
 @SpringBootApplication
 public class ECommerceApplication implements CommandLineRunner {
 	
+
+	Logger log = LoggerFactory.getLogger(ECommerceApplication.class);
+
 	@Autowired
 	private UserService userService;
 	
@@ -32,8 +36,7 @@ public class ECommerceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		 try {
-		// TODO Auto-generated method stub
-		System.out.println("starting code");
+		log.debug("starting code");
 		
 		User user = new User();
 		user.setUsername("sai");
@@ -52,7 +55,7 @@ public class ECommerceApplication implements CommandLineRunner {
 		userRoleSet.add(userRole);
 		
 		User user1 = this.userService.createUser(user, userRoleSet);
-		System.out.println(user1.getUsername());
+		log.debug(user1.getUsername());
 		}
 		 catch (UserFoundException e) {
 	            e.printStackTrace();
