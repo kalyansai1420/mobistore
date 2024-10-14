@@ -15,7 +15,7 @@ Description:
 
 Technology Stack:
 
-1.Frontend - React
+1.Frontend - Angular
 
 2.Backend - Spring Boot
 
